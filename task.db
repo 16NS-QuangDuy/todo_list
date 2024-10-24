@@ -1,0 +1,22 @@
+-- Create the database (you can use any name)
+CREATE DATABASE todo_list;
+
+-- Switch to the newly created database
+USE todo_list;
+
+-- Create the users table without the deprecated display width
+CREATE TABLE users (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,  -- Removed (11)
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create the tasks table without the deprecated display width
+CREATE TABLE tasks (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,  -- Removed (11)
+    user_id INT UNSIGNED,                        -- Removed (11)
+    task_name VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
